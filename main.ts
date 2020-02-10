@@ -37,7 +37,7 @@ class Wheel {
 }
 
 class Road extends Array<Vehicle>{
-  public isRoadEmpty(){ 
+  public isEmpty(){ 
     return this.length === 0;
   }
   public start(){ 
@@ -53,4 +53,4 @@ road.push(Vehicle.newBike());
 road.start()
 
 console.log("All vehicles on road: ", road);
-console.log("isEmpty: ", road.isRoadEmpty());
+console.log("isEmpty: ", road.isEmpty());
