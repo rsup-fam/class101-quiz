@@ -1,38 +1,30 @@
 class Vehicle {
-  private numberOfWheels: number; // bigger than -1
-  public wheels: Wheel[];
-  private fuel: number; // 0~100
-
-  constructor(numberOfWheels: number, wheels: Wheel[], fuel: number) {
-    this.numberOfWheels = numberOfWheels;
-    this.wheels = wheels;
-    this.fuel = fuel;
+  constructor(
+    private numberOfWheels: number, 
+    protected wheels: Wheel[], 
+    private fuel: number
+  ) {
   }
   public getNumberOfWheels() { return this.numberOfWheels; }
-
   public getFuel() {return this.fuel; }
 }
 
 
 export class Wheel {
-  public kind: string;
-  public rpm: number = 0;
+  private rpm = 0;
 
-  constructor(kind) { this.kind = kind; }
-
+  constructor(
+    public kind: string
+  ) {
+  }
   public setNewRPM(r: number) {
     this.rpm = r;
   }
-
-  
 }
 
 class Car extends Vehicle {
-  // 시동을 켠다
   public run() {
-    for (let i = 0; i < this.getNumberOfWheels(); i++) {
-      this.wheels[i].rpm = 5;
-    }
+    this.wheels.forEach(wheel => wheel.setNewRPM(5))
   }
   public isRoadEmpty(vehicles: Vehicle[]) {
     return vehicles.length === 0;
@@ -40,11 +32,8 @@ class Car extends Vehicle {
 }
 
 class Bike extends Vehicle {
-  // 페달을 밟는다
   public start(){
-    for (let i = 0; i < this.getNumberOfWheels(); i++) {
-      this.wheels[i].rpm = 8;
-    }
+    this.wheels.forEach(wheel => wheel.setNewRPM(8))
   }
   public isRoadEmpty(vehicles: Vehicle[]) {
     return vehicles.length === 0;
@@ -54,9 +43,7 @@ class Bike extends Vehicle {
 // ------------
 
 const road: Vehicle[] = [];
-
 const car = new Car(4, [new Wheel("rubber"),new Wheel("rubber"),new Wheel("rubber"),new Wheel("ribber")], 100);
-
 const bike = new Bike(2, [new Wheel("plastic"), new Wheel("plastic")], 50);
 
 road.push(car);
