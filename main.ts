@@ -10,6 +10,9 @@ abstract class Vehicle {
     this.wheels.forEach(wheel => wheel.setNewRPM(rpm))
   }
   public abstract run(): void
+  public isOnRoad(road: Road) {
+    return road.includes(this);
+  }
 }
 
 export class Wheel {
@@ -28,17 +31,11 @@ class Car extends Vehicle {
   public run() {
     this.setRPM(5)
   }
-  public isOnRoad(road: Road) {
-    return road.includes(this);
-  }
 }
 
 class Bike extends Vehicle {
   public run(){
     this.setRPM(8)
-  }
-  public isOnRoad(road: Road) {
-    return road.includes(this);
   }
 }
 
