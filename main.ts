@@ -1,11 +1,10 @@
 class Vehicle {
   constructor(
-    private numberOfWheels: number, 
     protected wheels: Wheel[], 
     private fuel: number
   ) {
   }
-  public getNumberOfWheels() { return this.numberOfWheels; }
+  public getNumberOfWheels() { return this.wheels.length; }
   public getFuel() {return this.fuel; }
 }
 
@@ -43,8 +42,8 @@ class Bike extends Vehicle {
 // ------------
 
 const road: Vehicle[] = [];
-const car = new Car(4, [new Wheel("rubber"),new Wheel("rubber"),new Wheel("rubber"),new Wheel("ribber")], 100);
-const bike = new Bike(2, [new Wheel("plastic"), new Wheel("plastic")], 50);
+const car = new Car([new Wheel("rubber"),new Wheel("rubber"),new Wheel("rubber"),new Wheel("ribber")], 100);
+const bike = new Bike([new Wheel("plastic"), new Wheel("plastic")], 50);
 
 road.push(car);
 road.push(bike);
