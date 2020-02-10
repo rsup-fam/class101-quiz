@@ -17,7 +17,7 @@ class Vehicle {
   public isOnRoad(road: Road) {
     return road.includes(this);
   }
-  static newCar({ wheels = [new Wheel("rubber"),new Wheel("rubber"),new Wheel("rubber"),new Wheel("ribber")], fuel = 50 } = {}){
+  static newCar({ wheels = [new Wheel("rubber"), new Wheel("rubber"), new Wheel("rubber"), new Wheel("ribber")], fuel = 100 } = {}){
     return new Vehicle(wheels, fuel, 5);
   }
   static newBike({ wheels = [new Wheel("plastic"), new Wheel("plastic")], fuel = 50 } = {}){
