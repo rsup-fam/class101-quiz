@@ -41,6 +41,7 @@ class Bike extends Vehicle {
 
 class Road extends Array<Vehicle>{
   public isRoadEmpty(){ return this.length === 0 }
+  public start(){ this.forEach(vehicle => vehicle.run()) }
 }
 
 // ------------
@@ -51,7 +52,7 @@ const bike = new Bike([new Wheel("plastic"), new Wheel("plastic")], 50);
 
 road.push(car);
 road.push(bike);
-road.forEach(vehicle => vehicle.run())
+road.start()
 
 console.log("All vehicles on road: ", road);
 console.log("isEmpty: ", road.isRoadEmpty());
