@@ -1,29 +1,32 @@
 class Vehicle {
   constructor(
-    protected wheels: Wheel[], 
+    private wheels: Wheel[], 
     private fuel: number,
     private rpm: number 
   ) {
   }
-  public getNumberOfWheels() { return this.wheels.length; }
-  public getFuel() {return this.fuel; }
+  public getNumberOfWheels() { 
+    return this.wheels.length; 
+  }
+  public getFuel() {
+    return this.fuel; 
+  }
   public run(){
-    this.wheels.forEach(wheel => wheel.setNewRPM(this.rpm))
+    this.wheels.forEach(wheel => wheel.setNewRPM(this.rpm));
   }
   public isOnRoad(road: Road) {
     return road.includes(this);
   }
   static newCar({ wheels = [new Wheel("rubber"),new Wheel("rubber"),new Wheel("rubber"),new Wheel("ribber")], fuel = 50 } = {}){
-    return new Vehicle(wheels, fuel, 5)
+    return new Vehicle(wheels, fuel, 5);
   }
   static newBike({ wheels = [new Wheel("plastic"), new Wheel("plastic")], fuel = 50 } = {}){
-    return new Vehicle(wheels, fuel, 8)
+    return new Vehicle(wheels, fuel, 8);
   }
 }
 
-export class Wheel {
+class Wheel {
   private rpm = 0;
-
   constructor(
     public kind: string
   ) {
@@ -34,8 +37,12 @@ export class Wheel {
 }
 
 class Road extends Array<Vehicle>{
-  public isRoadEmpty(){ return this.length === 0 }
-  public start(){ this.forEach(vehicle => vehicle.run()) }
+  public isRoadEmpty(){ 
+    return this.length === 0;
+  }
+  public start(){ 
+    this.forEach(vehicle => vehicle.run()) 
+  }
 }
 
 // ------------
