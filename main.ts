@@ -1,4 +1,4 @@
-class Vehicle {
+abstract class Vehicle {
   constructor(
     protected wheels: Wheel[], 
     private fuel: number
@@ -6,8 +6,11 @@ class Vehicle {
   }
   public getNumberOfWheels() { return this.wheels.length; }
   public getFuel() {return this.fuel; }
+  protected setRPM(rpm: number){
+    this.wheels.forEach(wheel => wheel.setNewRPM(rpm))
+  }
+  public abstract run(): void
 }
-
 
 export class Wheel {
   private rpm = 0;
@@ -23,7 +26,7 @@ export class Wheel {
 
 class Car extends Vehicle {
   public run() {
-    this.wheels.forEach(wheel => wheel.setNewRPM(5))
+    this.setRPM(5)
   }
   public isRoadEmpty(vehicles: Vehicle[]) {
     return vehicles.length === 0;
@@ -31,8 +34,8 @@ class Car extends Vehicle {
 }
 
 class Bike extends Vehicle {
-  public start(){
-    this.wheels.forEach(wheel => wheel.setNewRPM(8))
+  public run(){
+    this.setRPM(8)
   }
   public isRoadEmpty(vehicles: Vehicle[]) {
     return vehicles.length === 0;
@@ -47,8 +50,7 @@ const bike = new Bike([new Wheel("plastic"), new Wheel("plastic")], 50);
 
 road.push(car);
 road.push(bike);
-car.run();
-bike.start();
+road.forEach(vehicle => vehicle.run())
 
 console.log("All vehicles on road: ", road);
 console.log("isEmpty: ", car.isRoadEmpty(road));
